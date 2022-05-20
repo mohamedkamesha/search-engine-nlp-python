@@ -1,6 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 20 08:49:59 2022
+
+@author: mohamedk
+"""
 #USAGE: python3 classify.py <query_file>
 import sys
 import numpy as np
+import webbrowser
+from tkinter import *
 from math import sqrt
 from os import listdir
 from os.path import isfile, isdir, join
@@ -61,7 +69,40 @@ def mk_vector(vocab,tfs):
 vocab = read_vocab()
 print(len(vocab))
 vectors = read_category_vectors()
+
+
+
+
+
+#######################################################
+###
+def submit():
+    searchinput = entry.get()
+    f = open("query_file.txt", "w")
+    f.write(searchinput+"\n")
+    f.close()
+ 
+    return searchinput
+####
+####
+window=Tk()
+submit=Button(window,text="submit",command=submit)
+submit.pack(side=RIGHT)
+entry =Entry()
+entry.config(font=('Ink Free',50))
+entry.config(bg='#111111')
+entry.config(fg='#00FF00')
+entry.config(width=20)
+entry.pack()
+window.mainloop()
+####################################
+
+
+
+
+
 queries = read_queries("query_file.txt")
+linkList = [] 
 
 for q in queries:
     print("\nQUERY:",q)
@@ -129,8 +170,30 @@ for q in queries:
                             
                 f.close()
                 for abc in sorted(pageTitle, key=pageTitle.get, reverse=True):
-                    print('https://en.wikipedia.org/wiki/'+abc.replace(" ","_"))
+                    strx ='https://en.wikipedia.org/wiki/'+abc.replace(" ","_") 
+                    linkList.append(strx)
+                    print(strx)
                      
+
+
+##############################
+def callback(url):
+    webbrowser.open_new(url)
+
+root = Tk()
+
+for x in linkList :
+    link1 = Label(root, text=x, fg="blue", cursor="hand2")
+    link1.pack()
+    link1.bind("<Button-1>", lambda e: callback(x))
+
+
+root.mainloop()
+
+
+
+
+#####################
             
 """
 ngramfile = open(join(cat,"linear."+str(n)+".ngrams"),'w',encoding="utf-8")

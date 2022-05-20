@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 20 08:49:59 2022
+
+@author: mohamedk
+"""
 #USAGE: python3 ngrams.py <ngram size>
 
 import sys

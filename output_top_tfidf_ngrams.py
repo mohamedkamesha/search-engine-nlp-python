@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 20 08:49:59 2022
+
+@author: mohamedk
+"""
 import sys
 import string
 from math import log
